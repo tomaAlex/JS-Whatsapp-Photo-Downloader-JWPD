@@ -15,23 +15,21 @@ function forceDownload(url, fileName){
     xhr.send();
 }
 
-// numeste butonul de next id="next_button"
-// numeste poza pe full screen cu id="poza"
-let n = prompt("Cate poze descarci", 25);
+let n = prompt("How many photos do you want to download?", 25);
 let c = 1;
-let nex_button = document.getElementById("next_button");
+let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[2];
 
 function download_photo() {
-    if(c <= n) {
-        let poza = document.getElementById("poza");
-        for (let i = 1; i <= 4; i++) {
-            poza = poza.firstElementChild;
-        }
-        let fname = c + '.jpg';
-        forceDownload(poza.src, fname);
-        next_button.click();
-        c++;
-    }
+    let photo = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[1];
+    for (let i = 1; i <= 4; i++) photo = photo.firstElementChild;
+    let fname = c + '.jpg';
+    forceDownload(photo.src, fname);
+    next_button.click();
+    c++;
 }
 
-setInterval(download_photo(), 500); // adauga interval de timp intre download-uri, evita overflow-ul
+let downloader = setInterval(function() {
+    download_photo();
+    console.log('donwloaded the photograph number ' + (c - 1).toString());
+    if(c - 1 == n) clearInterval(downloader);
+}, 1000); // wait for the images to load, don't overflow the download process
