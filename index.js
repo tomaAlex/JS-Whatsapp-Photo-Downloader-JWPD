@@ -22,6 +22,7 @@ let next_button = document.getElementById('app').children[0].children[2].childre
 function download_photo() {
     let photo = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[1];
     for (let i = 1; i <= 4; i++) photo = photo.firstElementChild;
+    photo = photo.children[1].firstElementChild;
     let fname = c + '.jpg';
     forceDownload(photo.src, fname);
     next_button.click();
