@@ -17,7 +17,7 @@ function forceDownload(url, fileName){
 
 let n = prompt("How many photos do you want to download?", 25);
 let c = 1;
-let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[2];
+let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[2].children[0];
 
 function download_photo() {
     let photo = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[1];
