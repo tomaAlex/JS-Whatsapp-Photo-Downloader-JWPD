@@ -1,4 +1,4 @@
-function forceDownload(url, fileName){
+let forceDownload = (url, fileName) => {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
     xhr.responseType = "blob";
@@ -16,20 +16,23 @@ function forceDownload(url, fileName){
 }
 
 let n = prompt("How many photos do you want to download?", 25);
+let isAlphabetical = prompt("Is it alphabetical", "yes");
+isAlphabetical = isAlphabetical.toLowerCase() == 'y' || isAlphabetical.toLowerCase() == 'yes';
 let c = 1;
-let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[2].children[0];
+let chars = 'abcdefghijklmnopqrstuvwxyz';
+let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[0].children[1].children[2].children[0];
 
-function download_photo() {
-    let photo = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[1].children[1];
+let download_photo = () => {
+    let photo = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[0].children[1].children[1];
     for (let i = 1; i <= 4; i++) photo = photo.firstElementChild;
     photo = photo.children[1].firstElementChild;
-    let fname = c + '.jpg';
+    let fname = (isAlphabetical ? chars.charAt((c - 1) % chars.length) : c - 1) + '.jpg';
     forceDownload(photo.src, fname);
     next_button.click();
     c++;
 }
 
-let downloader = setInterval(function() {
+let downloader = setInterval(() => {
     download_photo();
     console.log('donwloaded the photograph number ' + (c - 1).toString());
     if(c - 1 == n) clearInterval(downloader);
