@@ -20,7 +20,7 @@ let isAlphabetical = prompt("Is it alphabetical", "yes");
 isAlphabetical = isAlphabetical.toLowerCase() == 'y' || isAlphabetical.toLowerCase() == 'yes';
 let c = 1;
 let chars = 'abcdefghijklmnopqrstuvwxyz';
-let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[0].children[1].children[2].children[0];
+let next_button = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[0].children[1].children[2].children[0].children[0];
 
 let download_photo = () => {
     let photo = document.getElementById('app').children[0].children[2].children[0].children[0].children[1].children[0].children[1].children[1];
